@@ -1,0 +1,18 @@
+{
+  "name": "xmpp-client",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@xmpp/client": "^0.3.0",
+    "@xmpp/client-core": "^0.3.0",
+    "@xmpp/xml": "0.3.0",
+    "xml-formatter": "^1.0.1",
+    "xmlbuilder": "^10.0.0"
+  }
+}

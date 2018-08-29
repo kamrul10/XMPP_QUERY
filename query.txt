@@ -1,0 +1,113 @@
+_querying the member affliations_
+return client.send(
+  xml('iq', {
+      from: jid.toString(),
+      id: new Date().getTime().toString(36),
+      to: 'trk1234@conference.localhost',
+      type: 'get'
+    },
+    xml('query', {
+        xmlns: '<http://jabber.org/protocol/muc#admin>'
+      },
+      xml('item', {
+        affiliation: 'member'
+      })
+    )
+  )
+)
+
+_change participant affliation_
+
+     xml('iq', {
+       from: jid.toString(),
+       id: new Date().getTime().toString(36),
+      to: 'trk1234@conference.localhost',
+       type: 'set'
+     },
+     xml('query', {
+         xmlns: '<http://jabber.org/protocol/muc#admin>'
+       },
+       xml('item', {
+           affiliation: 'member',
+           jid: 'tryon@localhost',
+           nick: 'hello12'
+        },
+        xml('reason', {}, 'A worthy fella indeed!')
+      )
+     )
+
+   )
+ ,
+
+_create or join to existing chat room_
+ xml('presence', {
+     from: jid.toString(),
+     to: "trk1234@conference.localhost/hello1234"
+   },
+   xml('x', {
+     xmlns: 'http://jabber.org/protocol/muc'
+   })
+ )
+
+_fetching number of offline user messages_
+xml('iq', { type: 'get', id:new Date().getTime().toString(36)},
+     xml('query', {xmlns:'<http://jabber.org/protocol/disco#items',node:'http://jabber.org/protocol/offline'}>)
+  )
+)
+
+_presence check_
+  xml('presence',{from:jid.toString()}
+    // xml('priority', {},1)
+)
+
+_Sending messages_
+xml('message', {
+    to: recipient,
+    from: jid.toString(),
+    type: 'chat',
+  },
+  xml('body', {}, 'hello')
+)
+
+_getting room info_
+
+  xml('iq', {
+      from: jid.toString(),
+      id: new Date().getTime().toString(36),
+      to: "trk1234@conference.localhost",
+      type: 'get'
+    },
+    xml('query', {
+      xmlns: '<http://jabber.org/protocol/disco#info>'
+    })
+ )
+
+ _sending a invitation through medium to another user_
+
+   xml('message', {
+       from: jid.toString(),
+       to: 'trk1234@conference.localhost',
+       id: new Date().getTime().toString(36)
+     },
+     xml('x', {
+         xmlns: '<http://jabber.org/protocol/muc#user>'
+       },
+       xml('invite', {
+           to: 'joy@localhost'
+         },
+         xml('reason', {}, 'Hey Hecate, this is the place for all good witches!')
+       )
+     )
+   )
+
+   _Checking push notification status_
+   xml('iq', {
+       from: 'kamrul@192.168.1.104',
+       to: 'kamrul@192.168.1.104',
+       id: new Date().getTime().toString(36),
+       type: 'get'
+     },
+     xml('query', {
+       xmlns: '<http://jabber.org/protocol/disco#info>'
+     })
+   )
